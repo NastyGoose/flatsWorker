@@ -6,19 +6,11 @@ import Flat from '../models/flats/flat';
 import { logger } from './Logger';
 
 export function updateFlatRecords(oldRecords, newRecords) {
-
-    let store = {};
-
-    // better method to create store through reduce method but it need to be fixed(later)
-    // store = oldRecords.reduce((acc, curr) => {
-    //     return acc[curr.Address] = curr.Price;
-    // }, {});
-
-    for (let i = 0; i < oldRecords.length; i++) {
-        let key = oldRecords[i].Address;
-        store[key] = oldRecords[i].Price;
-    }
-
+    let store = oldRecords.reduce((acc, curr) => {
+        acc[curr.Address] = curr.Price;
+        return acc;
+    }, {});
+    
     const promises = newRecords.map((newFlat) => {
        if (newFlat.Price) {
            if (store[newFlat.Address]) {

@@ -27,7 +27,9 @@ class DataSource {
       .all(prs)
       .then((results) => {
         results = lodash.flatten(results);
+        console.log(results.length);
         results = lodash.uniqBy(results, 'Address');
+        console.log(results.length);
         return results;
       });
      // could be more actions like
