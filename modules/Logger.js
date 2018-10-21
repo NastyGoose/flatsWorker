@@ -12,8 +12,7 @@ _.level = 'debug';
         time: `, new Date());
 
         Log.create({
-            event: event,
-            date: new Date(),
+            event,
             address,
             addInfo: addInfo.join('\n'),
         });

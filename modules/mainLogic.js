@@ -10,7 +10,7 @@ export function updateFlatRecords(oldRecords, newRecords) {
         acc[curr.Address] = curr.Price;
         return acc;
     }, {});
-    
+
     const promises = newRecords.map((newFlat) => {
        if (newFlat.Price) {
            if (store[newFlat.Address]) {

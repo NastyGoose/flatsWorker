@@ -1,22 +1,22 @@
 import mongoose from 'mongoose';
 
-const log = new mongoose.Schema({
-    event: {
+const Log = new mongoose.Schema({
+    Event: {
         type: String,
         default: ''
     },
-    time: {
+    Time: {
         type: Date,
-        default: new Date()
+        default: Date.now()
     },
-    address: {
+    Address: {
         type: String,
         default: ''
     },
-    addInfo: {
+    AddInfo: {
         type: String,
         default: ''
     }
 });
 
-export default mongoose.model('Log', log, 'logs');
+export default mongoose.model('Log', Log, 'logs');

@@ -14,8 +14,8 @@ fs.readdirSync(currentDir).forEach(file => {
 class DataSource {
   constructor() {
     this.sources = filenames.map(filename => {
-        const path = currentDir + '/' + filename;
-        filename = require(path).default;
+        const _path = path.join(currentDir, filename);
+        filename = require(_path).default;
         return filename;
     });
   }
@@ -27,9 +27,7 @@ class DataSource {
       .all(prs)
       .then((results) => {
         results = lodash.flatten(results);
-        console.log(results.length);
         results = lodash.uniqBy(results, 'Address');
-        console.log(results.length);
         return results;
       });
      // could be more actions like

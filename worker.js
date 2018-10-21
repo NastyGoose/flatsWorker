@@ -7,6 +7,8 @@ import DataSource from './modules/datasources/';
 import { updateFlatRecords } from './modules/mainLogic';
 import Flat from './models/flats/flat';
 
+import { logger } from './modules/Logger';
+
 const ds = new DataSource();
 
 const uri = process.env.MONGO_FLATS;
@@ -45,8 +47,9 @@ const runner = () => {
 };
 
 const main = () => {
-  console.log('run end time: ', date.format(new Date(), 'HH:mm:ss'));
-  console.log('next run will be in', reload, 'hours since now');
+  logger.log('run ended', '',
+      `run end time: ${date.format(new Date(), 'HH:mm:ss')}`,
+      `next run will be in ${reload} hours since now`);
   setTimeout(() => {
       runner().then(main);
   }, reload * hour);

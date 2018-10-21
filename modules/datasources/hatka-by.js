@@ -1,12 +1,8 @@
 import cheerio from 'cheerio';
 import rp from 'request-promise';
 import jsonframe from 'jsonframe-cheerio';
-import * as log4js from 'log4js';
-import lodash from 'lodash';
 import converter from '../converter';
-
-const logger = log4js.getLogger();
-logger.level = 'debug';
+import { logger } from '../Logger';
 
 function getNewPage($) {
     let url = null;
@@ -19,7 +15,7 @@ function getNewPage($) {
 function parseData(url) {
     return rp(url)
         .then(function (body) {
-            logger.debug('parse started: ', url);
+            logger.log('parse started: ', '', `URL: ${url}`);
             const $ = cheerio.load(body);
             jsonframe($);
             let frame = {
