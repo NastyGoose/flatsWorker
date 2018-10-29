@@ -14,8 +14,6 @@ const ds = new DataSource();
 const uri = process.env.MONGO_FLATS;
 const reload = process.env.RELOAD_TIMEOUT;
 
-const hour = 3600 * 1000;
-
 const runner = () => {
     mongoose.connect(uri, {useNewUrlParser: true});
 
@@ -46,13 +44,10 @@ const runner = () => {
         .catch((err) => console.log(err));
 };
 
-const main = () => {
-  logger.log('run ended', '',
-      `run end time: ${date.format(new Date(), 'HH:mm:ss')}`,
-      `next run will be in ${reload} hours since now`);
-  setTimeout(() => {
-      runner().then(main);
-  }, reload * hour);
-};
 
-runner().then(main);
+
+runner().then(() => {
+      logger.log('run ended', '',
+          `run end time: ${ date.format(new Date(), 'HH:mm:ss') }`,
+          `next run will be in ${ reload } hours since now`);
+});
