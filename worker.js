@@ -45,9 +45,11 @@ const runner = () => {
 };
 
 
+runner();
 
-runner().then(() => {
-      logger.log('run ended', '',
-          `run end time: ${ date.format(new Date(), 'HH:mm:ss') }`,
-          `next run will be in ${ reload } hours since now`);
-});
+// runner().then(() => {
+//       logger.log('run ended', '',
+//           `run end time: ${ date.format(new Date(), 'HH:mm:ss') }`,
+//           `next run will be in ${ reload } hours since now`);
+//           return 'run ended';
+// });
