@@ -1,18 +1,15 @@
 import mongoose from 'mongoose';
 import retry from 'retry-as-promised';
 import Promise from 'bluebird';
-import date from 'date-and-time';
 
 import DataSource from './modules/datasources/';
 import { updateFlatRecords } from './modules/mainLogic';
 import Flat from './models/flats/flat';
 
-import { logger } from './modules/Logger';
 
 const ds = new DataSource();
 
 const uri = process.env.MONGO_FLATS;
-const reload = process.env.RELOAD_TIMEOUT;
 
 const runner = () => {
     mongoose.connect(uri, {useNewUrlParser: true});
